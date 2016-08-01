@@ -255,7 +255,7 @@
 
 <div id=header>
 	<div class="wrapper">
-		<a href="http://plabdev.ramk.fi/~campusmap/"><img class="logo" src="images/logo.png" style="width: auto"></a>
+		<a href="localhost:8080"><img class="logo" src="images/logo.png" style="width: auto"></a>
 		<p class="interactivemaptext" style="width: 15%">INTERACTIVE MAP</p>
 		<div class="rightbox">
 		<p id="searchtext">Firstname, Lastname or Room</p>
