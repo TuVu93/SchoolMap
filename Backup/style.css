@@ -1,0 +1,42 @@
+#leftCont {
+display: block;
+background-color: transparent;
+background-repeat: no-repeat;
+float: left;
+background-color: transparent;
+background-repeat: no-repeat;
+background-image: url('images/blank.png');
+}
+
+#rightCont {
+display: block;
+background-color: transparent;
+background-repeat: no-repeat;
+float: right;
+background-color: transparent;
+background-repeat: no-repeat;
+background-image: url('images/blank.png');
+}
+
+#l-half-col { 
+width: 20%;
+height: 60px;
+margin-top: 30px;
+float: left;
+}
+
+#backButton {
+float: left;
+}
+
+#radioContainer{
+float: left;
+}
+
+button{
+	background:white;
+}
+
+button.selected{
+	background:orange;
+}

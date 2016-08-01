@@ -1,0 +1,123 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+#leftImg{
+	width:200px;
+	height:200px;
+}
+
+#searchForm{
+	margin-top: 3%;
+	float: right; 
+	width: 70%;
+	text-align: right;
+}
+
+#leftCont {
+display: block;
+background-color: transparent;
+background-repeat: no-repeat;
+float: left;
+background-color: transparent;
+background-repeat: no-repeat;
+background-image: url('images/blank.png');
+}
+
+#rightCont {
+display: block;
+background-color: transparent;
+background-repeat: no-repeat;
+float: right;
+background-color: transparent;
+background-repeat: no-repeat;
+background-image: url('images/blank.png');
+}
+
+#l-half-col { 
+width: 20%;
+height: 60px;
+margin-top: 30px;
+float: left;
+}
+
+#backButton {
+float: left;
+}
+
+#radioContainer{
+float: left;
+}
+
+button{
+	background:white;
+}
+
+button.selected{
+	background:orange;
+}
+
+#header{
+	width: 100%;
+	height: 92px;
+	background-color: #FF532F;
+	clear: both;
+}
+
+#footer{
+	width: 100%;
+	height: 200px;
+	background-color: #363636;
+    left: 0; bottom: 0; 
+	clear: both;
+}
+
+.wrapper{
+	max-width: 1366px;
+	margin: auto;
+	position: relative;
+}
+
+.logo{
+	float: left;
+	padding: 12px 0px 0px;
+}
+
+.interactivemaptext{
+	float: left;
+	color: white;
+	font-family: Arial;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 54px 0px 0px 50px;
+}
+
+.footlogo{
+	float: left;
+	padding: 50px 0px 0px 0px;
+}
+
+.address{
+	float: left;
+	color: white;
+	font-family: Arial;
+	padding: 64px 0px 0px 50px;
+}
+
+.rightbox{
+	background: #ff9580;
+	float: right;
+	width: 270px;
+	height: 92px;
+}
+
+#searchtext{
+	margin-right: 30px;
+	margin-top: 20px;
+	text-align: right;
+	float: right;
+	width: 100%;
+	height: auto;
+	color: white;
+}
