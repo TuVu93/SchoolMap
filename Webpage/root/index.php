@@ -1,3 +1,10 @@
+<?php
+session_start();     // Start the session
+if (!isset($_SESSION["IB"]) && !isset($_SESSION["tour"])) {
+	$_SESSION["IB"] = "IB"; // If session not registered
+}
+?>
+
 <!doctype html>
 <html>
 <head>
@@ -39,9 +46,9 @@
 				floor = 3;
 		}
 		//set left image to building
-		var leftImg = "images/Building_" + floor + ".png";
+		var leftImg = "images/Building_" + building + ".png";
 		document.getElementById("leftImg").src = leftImg;
-		leftImageMap = "#building_" + floor;
+		leftImageMap = "#building_" + building;
 		$('#leftImg').attr({ useMap: leftImageMap });
 		//display back button
 		document.getElementById("l-half-col").style.display="inline";
@@ -102,7 +109,7 @@
 	function roomSelect(building, floor, room)
 	{
         $.ajax({
-            url: 'php/roomSelect.php', //Call roomSelect.php
+            url: 'php/room_select.php', //Call roomSelect.php
             type: "POST",
             data: ({room: room}),
             success: function(data){
@@ -172,6 +179,71 @@
 		});
 	});
 	
+	function tourism_map()
+	{
+		$('#rightImg').mapster('unbind');
+		$('#rightImg').attr({ useMap: '' });
+		document.getElementById("rightImg").src = "images/blank.png";
+		$('#leftImg').mapster('unbind');
+		$('#leftImg').attr({ useMap: '' });
+		fromMap = true;
+		//set left image to building
+		var leftImg = "images/tourism_overview.png";
+		document.getElementById("leftImg").src = leftImg;
+		$('#leftImg').attr({ useMap: '#tourism_map' });
+		
+		$('#leftImg').mapster({
+			singleSelect : true,
+			isDeselectable: false,
+			mapKey: 'rel',
+			fillOpacity: 0.3,
+			render_highlight: {
+				fillColor: 'ffff99'
+			},
+			render_select: {
+				fillColor: '8cc76c'
+			},
+			stroke: true,
+			strokeColor: '275aea',
+			stroke: 2,
+			scaleMap: true,
+			onClick: function (e) {buildingSelect(e.key);}
+		});
+		refresh_image();
+	}
+	
+	function ib_map()
+	{
+		$('#rightImg').mapster('unbind');
+		$('#rightImg').attr({ useMap: '' });
+		document.getElementById("rightImg").src = "images/blank.png";
+		$('#leftImg').mapster('unbind');
+		$('#leftImg').attr({ useMap: '' });
+		fromMap = true;
+		var leftImg = "images/Overview.png";
+		document.getElementById("leftImg").src = leftImg;
+		$('#leftImg').attr({ useMap: '#school_map' });
+		
+		$('#leftImg').mapster({
+			singleSelect : true,
+			isDeselectable: false,
+			mapKey: 'rel',
+			fillOpacity: 0.3,
+			render_highlight: {
+				fillColor: 'ffff99'
+			},
+			render_select: {
+				fillColor: '8cc76c'
+			},
+			stroke: true,
+			strokeColor: '275aea',
+			stroke: 2,
+			scaleMap: true,
+			onClick: function (e) {buildingSelect(e.key);}
+		});
+		refresh_image();
+	}
+	
 	<!--Scale image to windows resolution-->
 	var window_width = 0;
 	var window_height = 0;
@@ -220,7 +292,7 @@
 		var name = document.getElementById("searchBox").value;
 		name = name.trim();
 		if (name.length == 0) { 
-			alert("No no!!!");
+			alert("Empty search");
 			return;
 		}
 		else {
@@ -252,10 +324,9 @@
 </head>
 
 <body>
-
 <div id=header>
 	<div class="wrapper">
-		<a href="localhost:8080"><img class="logo" src="images/logo.png" style="width: auto"></a>
+		<a href="http://localhost:8088/"><img class="logo" src="images/logo.png" style="width: auto"></a>
 		<p class="interactivemaptext" style="width: 15%">INTERACTIVE MAP</p>
 		<div class="rightbox">
 		<p id="searchtext">Firstname, Lastname or Room</p>
@@ -264,29 +335,28 @@
 			<input type="image" id="submitButton" name="submit" src="images/search.png" width="20px" height="20px"> 
 		</form> 
 		</div>
-		<p id="raaagh" style="float:right; width: 100%; height: auto; text-align: right;"></p>
+		<button onClick="tourism_map()">Viirinkangas</button>
+		<button onClick="ib_map()">Jokiväylä</button>
 	</div>
 </div>
 
-
-<div id="l-half-col" style="display: none;">
-	<img id="backButton" class="back" onclick="backtoMain();return false;" src="images/ButtonBack.png" width="50" height="auto" border="0"/>
-	<div id="radioContainer">
-		<button id="btn_a" onclick="buildingSelect('a');return false;">A</button>
-		<button id="btn_b" onclick="buildingSelect('b');return false;">B</button>
-		<button id="btn_c" onclick="buildingSelect('c');return false;">C</button>
-		<button id="btn_d" onclick="buildingSelect('d');return false;">D</button>
-		<button id="btn_e" onclick="buildingSelect('e');return false;">E</button>
+	<div id="l-half-col" style="display: none;">
+		<img id="backButton" class="back" onclick="backtoMain();return false;" src="images/ButtonBack.png" width="50" height="auto" border="0"/>
+		<div id="radioContainer">
+			<button id="btn_a" onclick="buildingSelect('a');return false;">A</button>
+			<button id="btn_b" onclick="buildingSelect('b');return false;">B</button>
+			<button id="btn_c" onclick="buildingSelect('c');return false;">C</button>
+			<button id="btn_d" onclick="buildingSelect('d');return false;">D</button>
+			<button id="btn_e" onclick="buildingSelect('e');return false;">E</button>
+		</div>
+		<p id="raaagh" style="float:right; height: auto; text-align: right;"></p>
 	</div>
-</div>
-<div id="rightCont">
-		<img id="rightImg" src="images/blank.png" style="border-style:none"/>
-</div>
-<div id="leftCont">
-		<img id="leftImg" src="images/Overview.png" style="border-style:none" usemap="#school_map"/>
-</div>
-
-
+	<div id="rightCont">
+			<img id="rightImg" src="images/blank.png" style="border-style:none"/>
+	</div>
+	<div id="leftCont">
+		<img id="leftImg" src="images/Overview.png" style="border-style:none" />
+	</div>
 
 <map name="school_map" id="school_map">
 	<area shape="poly" rel="a" href="#" coords=" 418,424, 419,424, 418,581, 479,582, 477,590, 528,608, 536,583, 573,582, 575,531, 659,530, 659,476, 575,475, 575,425, 535,425, 535,405, 523,405, 514,401, 506,400, 498,398, 489,398, 477,401, 469,405, 459,405, 459,425, 419,424"/>
@@ -296,8 +366,35 @@
 	<area shape="poly" rel="e" href="#" coords=" 329,1008,320,964,380,954,379,942,379,934,381,926,365,923,375,894,387,897,432,770,472,784,467,800,461,816,456,830,449,850,439,879,420,925,423,927,422,946,419,946,428,990" />
 </map>
 
-<map name="building_1" id="building_1">
-    <area href="#" shape="poly" rel="1" coords="31,47,33,43,36,40,39,36,313,36,320,39,324,43,326,47,326,471,325,476,323,480,319,484,317,486,42,485,36,483,34,481,30,473" />
+<map name="building_a" id="building_a">
+    <area rel="3" href="#" coords="98,247,318,246,294,155,264,155,264,149,243,146,228,146,211,149,208,155,178,154,154,182,145,182,136,192,144,193" shape="poly">
+    <area rel="2" href="#" coords="92,311,325,310,306,246,137,247,134,252,141,252" shape="poly">
+    <area rel="1" href="#" coords="128,311,78,371,177,371,169,383,254,412,273,373,334,372,320,321,350,322,352,330,361,330,362,336,375,335,372,329,379,329,375,320,438,320,424,305,427,305,414,289,400,289,398,287,368,286,366,282,347,281,347,279,334,278,335,282,317,281,325,310" shape="poly">
+</map>
+
+<map name="building_b" id="building_b">
+    <area rel="3" href="#" coords="114,217,133,189,188,189,195,175,294,175,298,189,324,189,333,208,369,208,380,224,385,224,391,233,386,233,402,255,357,255,356,259,345,259,342,256,304,255,293,217" shape="poly">
+    <area rel="2" href="#" coords="153,246,164,226,276,226,280,246,322,247,341,284,378,284,391,302,397,302,404,312,398,312,417,337,367,340,355,312,340,312,351,338,310,338,298,294,276,294,281,324,205,325,208,293,103,293,125,261,184,261,188,246" shape="poly">
+    <area rel="1" href="#" coords="165,298,265,298,268,318,289,318,289,313,295,313,295,318,324,318,327,323,347,323,353,332,331,332,340,355,379,355,392,374,397,374,403,383,399,383,417,409,368,410,371,415,356,415,353,410,311,410,307,385,280,385,281,395,272,395,264,402,255,406,245,408,235,407,225,404,215,400,206,395,207,385,168,385,174,365,139,365,129,385,99,385,111,365,104,365,126,333,152,333,156,318,154,318" shape="poly">
+</map>
+
+<map name="building_c" id="building_c">
+    <area rel="5" href="#" coords="86,69,99,56,186,56,187,52,198,51,207,51,208,55,335,35,333,33,342,31,345,34,388,27,403,36,319,50,323,55,308,57,304,53,212,68,196,70,180,70" shape="poly">
+    <area rel="4" href="#" coords="74,144,107,112,191,113,193,108,199,105,204,107,206,112,282,101,282,100,307,96,308,97,376,87,392,99,400,98,414,107,219,141,221,144,196,149,188,149,188,151,172,151,172,149,165,149,167,145" shape="poly">
+    <area rel="3" href="#" coords="73,219,110,185,193,185,195,182,200,180,203,179,209,181,210,184,284,173,283,171,309,167,311,169,378,159,394,170,402,169,418,179,335,195,221,215,222,219,196,224,166,224,168,219" shape="poly">
+    <area rel="2" href="#" coords="74,295,107,263,190,263,194,259,200,257,205,259,207,262,282,252,281,250,307,247,308,248,375,238,391,249,400,248,414,258,220,292,221,295,192,300,186,301,166,299,168,295" shape="poly">
+    <area rel="1" href="#" coords="76,366,108,336,184,336,185,333,195,333,199,331,204,331,207,335,283,324,282,323,309,319,310,320,330,318,330,315,336,314,338,317,379,310,413,329,328,344,332,349,319,352,315,347,219,363,221,368,188,373,152,437,131,437,174,368" shape="poly">
+</map>
+
+<map name="building_d" id="building_d">
+    <area rel="1" href="#" coords="91,390,111,329,138,329,139,324,190,324,190,317,174,317,174,300,223,301,233,340,194,341,203,398,126,398,126,389" shape="poly">
+</map>
+
+<map name="building_e" id="building_e">
+    <area rel="4" href="#" coords="75,102,76,149,130,134,157,130,353,130,331,108,178,107,179,102,148,103,149,108,125,112,118,94" shape="poly">
+    <area rel="3" href="#" coords="76,176,78,227,140,211,159,208,376,207,353,184,185,184,187,178,156,178,156,185,148,186,138,188,129,190,120,168" shape="poly">
+    <area rel="2" href="#" coords="76,252,81,307,148,288,161,286,161,284,395,283,370,259,193,258,193,254,162,255,162,261,152,262,142,264,134,266,122,243" shape="poly">
+    <area rel="1" href="#" coords="76,330,91,383,152,367,147,358,155,356,164,355,172,355,178,355,178,363,408,361,386,336,202,337,202,332,177,331,176,339,166,339,158,340,148,342,138,344,125,320" shape="poly">
 </map>
 
 <map name="building_3" id="building_3">
@@ -546,7 +643,7 @@
     <area rel="d115" href="#" shape="poly" coords="743,774,842,774,842,867,771,866,768,803,743,801" />	<!-- D115 -->
 </map>
 
-<map name="e_1" id="e_1">
+<map name="e_2" id="e_2">
     <area rel="e126" href="#" shape="poly" coords="173,145,199,130,211,150,187,165" />				<!-- E126 -->
     <area rel="e127" href="#" shape="poly" coords="204,127,239,184,289,161,253,97" />				<!-- E127 -->
     <area rel="e131" href="#" shape="poly" coords="263,224,305,295,352,267,311,196" />				<!-- E131 -->
@@ -563,7 +660,7 @@
     <area rel="e112" href="#" shape="poly" coords="1038,244,1039,261,1072,260,1073,252,1064,243" />	<!-- E112 -->
 </map>
 
-<map name="e_2" id="e_2">
+<map name="e_3" id="e_3">
     <area rel="e202" href="#" shape="poly" coords="558,299,557,360,639,359,639,300" />			<!-- E202 -->
     <area rel="e234" href="#" shape="poly" coords="359,261,397,330,404,326,411,324,416,321,423,318,431,315,438,314,443,312,452,310,461,308,467,306,476,306,483,306,492,305,490,226,468,226,444,231,421,237,402,242,385,249" /> <!-- E234 -->
 	<area rel="e209" href="#" shape="poly" coords="659,265,679,262,760,263,761,286,776,286,777,360,691,360,691,328,695,322,669,295,644,294,644,278,658,278" />		<!-- E209 -->
@@ -575,12 +672,14 @@
     <area rel="e216" href="#" shape="poly" coords="1035,240,1036,257,1067,258,1068,248,1059,240" />	<!-- E216 -->
 </map>
 
-<map name="e_3" id="e_3">
+<map name="e_4" id="e_4">
     <area rel="eArcticCivil" href="#" shape="poly" coords="791,265,791,363,923,364,922,264" />			<!-- ARCTIC CIVIL ENGINEERING -->
     <area rel="eArcticPower" href="#" shape="poly" coords="1067,267,1200,265,1200,366,1066,364" />		<!-- ARCTIC POWER -->
 </map>
 
-
+<map name="tourism_map" id="tourism_map">
+	<area rel="a" href="#" coords="836,1270,844,1275,869,1232,890,1243,879,1262,957,1305,968,1286,1084,1350,1111,1305,1081,1286,1212,1048,1277,1086,1264,1116,1308,1140,1350,1060,1420,1097,1453,1038,1370,992,1437,868,1397,844,1410,814,1230,715,1224,720,1183,699,1121,804,1079,779,1098,744,1044,715,1009,726,979,712,944,720,925,755,893,739,863,793,839,782,799,852,780,844,728,933,745,946,685,1057,691,1060,688,1068,661,1054,629,1113,634,1116,631,1121,796,1216,801,1208,819,1221,851,1159,838,1151,859,1105,808,1078,886,933,962,973,956,987,981,1000,989,987,1080,1038,1002,1186,932,1147,927,1134,911,1137,895,1172,911,1180,908,1190,889,1180" shape="poly">
+</map>
 
 <div id=footer>
 	<div class="wrapper">
@@ -591,6 +690,11 @@
 			96300 Rovaniemi, Finland</br>
 			+358 20 798 6000</br>
 		</p>
+		<?php if (isset($_SESSION["admin"])) { ?>
+			<a href="php/admin.php" class="admin">Admin</a>
+		<?php } else {?>
+			<a href="php/login.php?msg=" class="admin">Login</a>
+		<?php }?>
 	</div>
 </div>
 </html>

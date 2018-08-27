@@ -6590,7 +6590,7 @@ ER_CANNOT_LOAD_FROM_TABLE_V2
 
 
 ER_MASTER_DELAY_VALUE_OUT_OF_RANGE
-  eng "The requested value %u for the master delay exceeds the maximum %u"
+  eng "The requested value %s for the master delay exceeds the maximum %u"
 ER_ONLY_FD_AND_RBR_EVENTS_ALLOWED_IN_BINLOG_STATEMENT
   eng "Only Format_description_log_event and row events are allowed in BINLOG statements (but %s was provided)"
 
@@ -6781,7 +6781,7 @@ ER_GTID_UNSAFE_CREATE_SELECT
   eng "CREATE TABLE ... SELECT is forbidden when @@GLOBAL.ENFORCE_GTID_CONSISTENCY = 1."
 
 ER_GTID_UNSAFE_CREATE_DROP_TEMPORARY_TABLE_IN_TRANSACTION
- eng "When @@GLOBAL.ENFORCE_GTID_CONSISTENCY = 1, the statements CREATE TEMPORARY TABLE and DROP TEMPORARY TABLE can be executed in a non-transactional context only, and require that AUTOCOMMIT = 1."
+ eng "When @@GLOBAL.ENFORCE_GTID_CONSISTENCY = 1, the statements CREATE TEMPORARY TABLE and DROP TEMPORARY TABLE can be executed in a non-transactional context only, and require that AUTOCOMMIT = 1. These statements are also not allowed in a function or trigger because functions and triggers are also considered to be multi-statement transactions."
 
 ER_GTID_MODE_CAN_ONLY_CHANGE_ONE_STEP_AT_A_TIME
   eng "The value of @@GLOBAL.GTID_MODE can only change one step at a time: OFF <-> UPGRADE_STEP_1 <-> UPGRADE_STEP_2 <-> ON. Also note that this value must be stepped up or down simultaneously on all servers; see the Manual for instructions." 
@@ -7082,6 +7082,33 @@ ER_STOP_SLAVE_SQL_THREAD_TIMEOUT
 ER_STOP_SLAVE_IO_THREAD_TIMEOUT
   eng "STOP SLAVE command execution is incomplete: Slave IO thread got the stop signal, thread is busy, IO thread will stop once the current task is complete."
 
+ER_TABLE_CORRUPT
+  eng "Operation cannot be performed. The table '%-.64s.%-.64s' is missing, corrupt or contains bad data."
+
+ER_TEMP_FILE_WRITE_FAILURE
+  eng "Temporary file write failure."
+
+ER_INNODB_FT_AUX_NOT_HEX_ID
+  eng "Upgrade index name failed, please use create index(alter table) algorithm copy to rebuild index."
+
+ER_OLD_TEMPORALS_UPGRADED
+  eng "TIME/TIMESTAMP/DATETIME columns of old format have been upgraded to the new format."
+
+ER_INNODB_FORCED_RECOVERY
+  eng "Operation not allowed when innodb_forced_recovery > 0."
+
+ER_AES_INVALID_IV
+  eng "The initialization vector supplied to %s is too short. Must be at least %d bytes long"
+  bg "Инициализационния вектор подаден на %s е прекалено къс. Трябва да е поне %d байта"
+
+ER_PLUGIN_CANNOT_BE_UNINSTALLED
+  eng "Plugin '%s' cannot be uninstalled now. %s"
+
+ER_GTID_UNSAFE_BINLOG_SPLITTABLE_STATEMENT_AND_GTID_GROUP
+  eng "Cannot execute statement because it needs to be written to the binary log as multiple statements, and this is not allowed when @@SESSION.GTID_NEXT == 'UUID:NUMBER'."
+
+ER_SLAVE_HAS_MORE_GTIDS_THAN_MASTER
+  eng "Slave has more GTIDs than the master has, using the master's SERVER_UUID. This may indicate that the end of the binary log was truncated or that the last binary log file was lost, e.g., after a power or disk failure when sync_binlog != 1. The master may or may not have rolled back transactions that were already replicated to the slave. Suggest to replicate any transactions that master has rolled back from slave to master, and/or commit empty transactions on master to account for transactions that have been committed on master but are not included in GTID_EXECUTED."
 #
 #  End of 5.6 error messages.
 #

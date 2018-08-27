@@ -37,7 +37,7 @@ background-image: url('images/blank.png');
 
 #l-half-col { 
 width: 20%;
-height: 60px;
+height: auto;
 margin-top: 30px;
 float: left;
 }
@@ -120,4 +120,16 @@ button.selected{
 	width: 100%;
 	height: auto;
 	color: white;
+}
+
+.admin{
+	float:right;
+	margin-top:60px;
+	color:white;
+}
+
+input[type="text"] {
+    width: 80px;
+	height: 15px;
+    margin: 10px;
 }

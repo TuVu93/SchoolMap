@@ -1,0 +1,41 @@
+2018-02-05 14:09:36 24556 [Note] Event Scheduler: Loaded 0 events
+2018-02-05 14:09:36 24556 [Note] D:\University\Thesis_Polestar\Webpage/mysql/bin/mysqld_usbwv8.exe: ready for connections.
+Version: '5.6.34'  socket: ''  port: 3306  MySQL Community Server (GPL)
+2018-02-05 14:10:30 3eb0 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:10:30 3eb0 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:10:30 3eb0 InnoDB: Error: Fetch of persistent statistics requested for table "test"."building" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2018-02-05 14:10:30 3eb0 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:10:30 3eb0 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:10:30 3eb0 InnoDB: Error: Fetch of persistent statistics requested for table "test"."room" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2018-02-05 14:10:31 3eb0 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:10:31 3eb0 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:10:31 3eb0 InnoDB: Error: Fetch of persistent statistics requested for table "test"."teacher" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2018-02-05 14:10:31 3eb0 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:10:31 3eb0 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:10:31 3eb0 InnoDB: Error: Fetch of persistent statistics requested for table "test"."#sql-5fec_15" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2018-02-05 14:10:31 3eb0 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:10:31 3eb0 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:10:31 3eb0 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:10:31 3eb0 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:10:31 3eb0 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:10:31 3eb0 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:10:31 3eb0 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:10:31 3eb0 InnoDB: Error: Fetch of persistent statistics requested for table "test"."#sql-5fec_15" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2018-02-05 14:10:31 3eb0 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:10:31 3eb0 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:10:31 3eb0 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:10:31 3eb0 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:10:31 3eb0 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:10:35 3eb0 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:10:35 3eb0 InnoDB: Error: Fetch of persistent statistics requested for table "test"."room" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2018-02-05 14:10:36 3eb0 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:10:36 3eb0 InnoDB: Error: Fetch of persistent statistics requested for table "test"."teacher" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2018-02-05 14:10:51 5cc4 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:10:51 5cc4 InnoDB: Recalculation of persistent statistics requested for table "test"."building" but the required persistent statistics storage is not present or is corrupted. Using transient stats instead.
+2018-02-05 14:10:52 3eb0 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:10:52 3eb0 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:10:52 3eb0 InnoDB: Error: Fetch of persistent statistics requested for table "test"."admin" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2018-02-05 14:11:01 5cc4 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:11:01 5cc4 InnoDB: Recalculation of persistent statistics requested for table "test"."teacher" but the required persistent statistics storage is not present or is corrupted. Using transient stats instead.
+2018-02-05 14:11:11 5cc4 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2018-02-05 14:11:11 5cc4 InnoDB: Recalculation of persistent statistics requested for table "test"."room" but the required persistent statistics storage is not present or is corrupted. Using transient stats instead.
